@@ -72,6 +72,7 @@ const prices = [
   { name: "Automobil Standard", price: "21 490 Kč", subtitle: "Skupina B · přibližně 3 měsíce", features: ["Výuka teorie", "28 hodin jízd", "Příprava ke zkoušce"] },
   { name: "Automobil Expres", price: "24 900 Kč", subtitle: "Skupina B · přibližně 1 měsíc", features: ["Intenzivní harmonogram", "Prioritní termíny", "Online studijní materiály"], featured: true },
   { name: "Automobil + přívěs", price: "8 900 Kč", subtitle: "Rozšíření B + E", features: ["Teoretická příprava", "Praktický výcvik", "Příprava ke zkoušce"] },
+  { name: "Motorka A1", price: "18 500 Kč", subtitle: "Skupina A1 · lehký motocykl", features: ["Teorie a technika jízdy", "Výcvik na cvičišti i v provozu", "Příprava ke zkoušce"] },
 ];
 
 const reviews = [
