@@ -13,7 +13,7 @@ import {
   ShieldCheck,
   Sparkles,
   Star,
-  SteeringWheel,
+  CarFront,
 } from "lucide-react";
 import { Navbar } from "@/components/Navbar";
 import { Reveal } from "@/components/Reveal";
@@ -136,7 +136,7 @@ function DrivingSchoolPage() {
 
       <section className="border-y border-ink/10 bg-card/50">
         <div className="mx-auto grid max-w-7xl gap-5 px-5 py-6 sm:grid-cols-3 sm:px-8">
-          {[[ShieldCheck, "Bezpečí na prvním místě", "Klidné tempo a jasná zpětná vazba."], [CalendarClock, "Termíny podle tebe", "Jízdy plánujeme tak, aby dávaly smysl."], [SteeringWheel, "Moderní vozový park", "Čisté, komfortní a spolehlivé vozy."]].map(([Icon, title, text], index) => {
+          {[[ShieldCheck, "Bezpečí na prvním místě", "Klidné tempo a jasná zpětná vazba."], [CalendarClock, "Termíny podle tebe", "Jízdy plánujeme tak, aby dávaly smysl."], [CarFront, "Moderní vozový park", "Čisté, komfortní a spolehlivé vozy."]].map(([Icon, title, text], index) => {
             const IconComponent = Icon as typeof ShieldCheck;
             return <Reveal key={title as string} delay={index * 100} className="flex items-center gap-4"><span className="grid size-11 shrink-0 place-items-center rounded-full bg-mint"><IconComponent className="size-5" /></span><div className="min-w-0"><h3 className="font-display font-semibold">{title as string}</h3><p className="text-sm text-ink/55">{text as string}</p></div></Reveal>;
           })}
@@ -165,11 +165,16 @@ function DrivingSchoolPage() {
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading eyebrow="Jak to probíhá" title="Od přihlášky k vlastní jízdě." description="Jasný postup, žádné překvapení. V každé fázi víš, co tě čeká a na čem pracujeme." />
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {["Vyplníš přihlášku", "Zvládneš teorii", "Najezdíš praxi", "Uděláš zkoušku"].map((step, index) => (
-              <Reveal key={step} delay={index * 100} className="relative border-t border-ink/15 pt-6">
+            {[
+              { title: "Vyplníš přihlášku", text: "Krátce se domluvíme na cíli, tempu a nejbližším termínu." },
+              { title: "Zvládneš teorii", text: "Srozumitelně, prakticky a s online materiály kdykoliv po ruce." },
+              { title: "Najezdíš praxi", text: "Od základů po reálný provoz, vždy s klidnou zpětnou vazbou." },
+              { title: "Uděláš zkoušku", text: "Připravíme tě tak, abys šel ke zkoušce s jistotou." },
+            ].map((step, index) => (
+              <Reveal key={step.title} delay={index * 100} className="relative border-t border-ink/15 pt-6">
                 <span className="font-display text-sm font-bold text-coral">0{index + 1}</span>
-                <h3 className="mt-5 font-display text-xl font-semibold">{step}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/55">{["Krátce se domluvíme na cíli, tempu a nejbližším termínu.", "Srozumitelně, prakticky a s online materiály kdykoliv po ruce.", "Od základů po reálný provoz, vždy s klidnou zpětnou vazbou.", "Připravíme tě tak, abys šel ke zkoušce s jistotou."][index]}</p>
+                <h3 className="mt-5 font-display text-xl font-semibold">{step.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink/55">{step.text}</p>
               </Reveal>
             ))}
           </div>
@@ -225,7 +230,13 @@ function DrivingSchoolPage() {
       <section className="py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2">
           <Reveal direction="left"><p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">Časté otázky</p><h2 className="mt-3 max-w-xl font-display text-4xl font-semibold leading-[1.08] md:text-5xl">Než poprvé otočíš klíčkem.</h2><p className="mt-5 max-w-lg text-ink/60">Krátké odpovědi na to, co zájemce o kurz nejčastěji zajímá.</p></Reveal>
-          <Reveal direction="right"><Accordion type="single" collapsible className="border-t border-ink/10">{[["Jak dlouho kurz obvykle trvá?", "Standardní kurz trvá přibližně tři měsíce. Intenzivní variantu lze po dohodě zvládnout zhruba za čtyři týdny."], ["Co je zahrnuto v ceně?", "Teoretická výuka, zákonný počet praktických jízd, studijní podklady a průběžná příprava na závěrečnou zkoušku."], ["Mohu kurz platit postupně?", "Ano, po individuální dohodě je možné cenu rozdělit do splátek v průběhu výcviku."], ["Kdy mohu začít?", "Nové kurzy otevíráme průběžně. Napiš nám a nabídneme ti nejbližší volný termín."], ["Co když zkoušku napoprvé neudělám?", "Společně projdeme slabá místa a domluvíme cílené doplňovací jízdy nebo přípravu na opravný termín."]].map(([question, answer]) => <AccordionItem key={question} value={question}><AccordionTrigger className="py-5 font-display text-base hover:no-underline">{question}</AccordionTrigger><AccordionContent className="max-w-xl pb-5 leading-relaxed text-ink/60">{answer}</AccordionContent></AccordionItem>)}</Accordion></Reveal>
+          <Reveal direction="right"><Accordion type="single" collapsible className="border-t border-ink/10">{[
+            { question: "Jak dlouho kurz obvykle trvá?", answer: "Standardní kurz trvá přibližně tři měsíce. Intenzivní variantu lze po dohodě zvládnout zhruba za čtyři týdny." },
+            { question: "Co je zahrnuto v ceně?", answer: "Teoretická výuka, zákonný počet praktických jízd, studijní podklady a průběžná příprava na závěrečnou zkoušku." },
+            { question: "Mohu kurz platit postupně?", answer: "Ano, po individuální dohodě je možné cenu rozdělit do splátek v průběhu výcviku." },
+            { question: "Kdy mohu začít?", answer: "Nové kurzy otevíráme průběžně. Napiš nám a nabídneme ti nejbližší volný termín." },
+            { question: "Co když zkoušku napoprvé neudělám?", answer: "Společně projdeme slabá místa a domluvíme cílené doplňovací jízdy nebo přípravu na opravný termín." },
+          ].map((item) => <AccordionItem key={item.question} value={item.question}><AccordionTrigger className="py-5 font-display text-base hover:no-underline">{item.question}</AccordionTrigger><AccordionContent className="max-w-xl pb-5 leading-relaxed text-ink/60">{item.answer}</AccordionContent></AccordionItem>)}</Accordion></Reveal>
         </div>
       </section>
 
