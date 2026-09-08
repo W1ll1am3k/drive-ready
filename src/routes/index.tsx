@@ -121,15 +121,9 @@ function DrivingSchoolPage() {
           </Reveal>
 
           <Reveal className="lg:col-span-5" direction="right" delay={120}>
-            <figure className="glass-surface overflow-hidden rounded-[2rem] p-3">
-              <div className="overflow-hidden rounded-[1.4rem]">
-                <img src={heroImage} alt="Pohled řidiče z moderního auta za soumraku" width={1408} height={1056} fetchPriority="high" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
-              </div>
-              <figcaption className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-3 py-3">
-                <span className="min-w-0 truncate text-sm font-semibold">Výuka bez zbytečného stresu</span>
-                <span className="shrink-0 text-xs text-ink/50">manuál + automat</span>
-              </figcaption>
-            </figure>
+            <div className="overflow-hidden rounded-[2rem] lg:-mr-6 lg:scale-[1.06]">
+              <img src={heroImage} alt="Pohled řidiče z moderního auta za soumraku" width={1408} height={1056} fetchPriority="high" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
+            </div>
           </Reveal>
         </div>
       </section>
