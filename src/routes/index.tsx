@@ -230,7 +230,13 @@ function DrivingSchoolPage() {
       <section className="py-20 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 sm:px-8 lg:grid-cols-2">
           <Reveal direction="left"><p className="text-xs font-bold uppercase tracking-[0.18em] text-coral">Časté otázky</p><h2 className="mt-3 max-w-xl font-display text-4xl font-semibold leading-[1.08] md:text-5xl">Než poprvé otočíš klíčkem.</h2><p className="mt-5 max-w-lg text-ink/60">Krátké odpovědi na to, co zájemce o kurz nejčastěji zajímá.</p></Reveal>
-          <Reveal direction="right"><Accordion type="single" collapsible className="border-t border-ink/10">{[["Jak dlouho kurz obvykle trvá?", "Standardní kurz trvá přibližně tři měsíce. Intenzivní variantu lze po dohodě zvládnout zhruba za čtyři týdny."], ["Co je zahrnuto v ceně?", "Teoretická výuka, zákonný počet praktických jízd, studijní podklady a průběžná příprava na závěrečnou zkoušku."], ["Mohu kurz platit postupně?", "Ano, po individuální dohodě je možné cenu rozdělit do splátek v průběhu výcviku."], ["Kdy mohu začít?", "Nové kurzy otevíráme průběžně. Napiš nám a nabídneme ti nejbližší volný termín."], ["Co když zkoušku napoprvé neudělám?", "Společně projdeme slabá místa a domluvíme cílené doplňovací jízdy nebo přípravu na opravný termín."]].map(([question, answer]) => <AccordionItem key={question} value={question}><AccordionTrigger className="py-5 font-display text-base hover:no-underline">{question}</AccordionTrigger><AccordionContent className="max-w-xl pb-5 leading-relaxed text-ink/60">{answer}</AccordionContent></AccordionItem>)}</Accordion></Reveal>
+          <Reveal direction="right"><Accordion type="single" collapsible className="border-t border-ink/10">{[
+            { question: "Jak dlouho kurz obvykle trvá?", answer: "Standardní kurz trvá přibližně tři měsíce. Intenzivní variantu lze po dohodě zvládnout zhruba za čtyři týdny." },
+            { question: "Co je zahrnuto v ceně?", answer: "Teoretická výuka, zákonný počet praktických jízd, studijní podklady a průběžná příprava na závěrečnou zkoušku." },
+            { question: "Mohu kurz platit postupně?", answer: "Ano, po individuální dohodě je možné cenu rozdělit do splátek v průběhu výcviku." },
+            { question: "Kdy mohu začít?", answer: "Nové kurzy otevíráme průběžně. Napiš nám a nabídneme ti nejbližší volný termín." },
+            { question: "Co když zkoušku napoprvé neudělám?", answer: "Společně projdeme slabá místa a domluvíme cílené doplňovací jízdy nebo přípravu na opravný termín." },
+          ].map((item) => <AccordionItem key={item.question} value={item.question}><AccordionTrigger className="py-5 font-display text-base hover:no-underline">{item.question}</AccordionTrigger><AccordionContent className="max-w-xl pb-5 leading-relaxed text-ink/60">{item.answer}</AccordionContent></AccordionItem>)}</Accordion></Reveal>
         </div>
       </section>
 
