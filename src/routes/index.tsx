@@ -181,9 +181,9 @@ function DrivingSchoolPage() {
         <div className="absolute -bottom-32 -left-20 size-96 rounded-full bg-coral/10 blur-3xl" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading light eyebrow="Ceník autoškoly" title="Transparentní ceny. Žádné hvězdičky." description="Cena zahrnuje teorii, praktickou výuku i průběžnou podporu. Kurz lze po dohodě hradit ve splátkách." />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="-mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 [scrollbar-width:thin]">
             {prices.map((item, index) => (
-              <Reveal key={item.name} delay={index * 100} className={`rounded-[1.5rem] p-7 ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
+              <Reveal key={item.name} delay={index * 100} className={`w-[80%] shrink-0 snap-start rounded-[1.5rem] p-7 sm:w-[52%] lg:w-[28.5%] ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
                 {item.featured ? <span className="rounded-full bg-ink/10 px-3 py-1 text-xs font-bold">Nejoblíbenější</span> : null}
                 <h3 className={`${item.featured ? "mt-5" : ""} font-display text-xl font-semibold`}>{item.name}</h3>
                 <p className="mt-4 font-display text-4xl font-semibold">{item.price}</p>
