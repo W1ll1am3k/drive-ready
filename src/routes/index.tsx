@@ -105,7 +105,7 @@ function DrivingSchoolPage() {
         <div className="relative mx-auto grid min-h-[calc(100svh-7rem)] max-w-7xl items-center gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-12 lg:gap-14 lg:pb-24">
           <Reveal className="lg:col-span-7" direction="left">
             <div className="inline-flex items-center gap-2 rounded-full bg-mint/75 px-3 py-1.5 text-xs font-bold text-ink/70">
-              <span className="size-1.5 rounded-full bg-coral" /> Humpolec · individuální výuka
+              <span className="size-1.5 rounded-full bg-coral" /> Místo · individuální výuka
             </div>
             <h1 className="mt-6 max-w-4xl font-display text-5xl font-semibold leading-[1.02] sm:text-6xl lg:text-7xl">Řidičák, který se vyplatí už při prvním zatočení.</h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/65 md:text-xl">Moderní auta, trpělivý instruktor a kurz přizpůsobený tvému tempu. Získáš jistotu, ne jen razítko.</p>
