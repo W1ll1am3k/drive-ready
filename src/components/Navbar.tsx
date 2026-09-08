@@ -24,9 +24,8 @@ export function Navbar() {
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-border bg-off/80 shadow-sm backdrop-blur-xl" : "bg-transparent"}`}>
       <div className={`mx-auto grid max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-5 transition-all sm:px-8 lg:flex lg:justify-between ${scrolled ? "py-3" : "py-5"}`}>
-        <a href="#top" className="flex min-w-0 items-center gap-3" onClick={() => setOpen(false)}>
-          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-ink font-display text-sm font-bold text-off">AŠ</span>
-          <span className="truncate font-display text-lg font-semibold text-ink">Autoškola Šťastný</span>
+        <a href="#top" className="flex min-w-0 items-center" onClick={() => setOpen(false)}>
+          <span className="truncate font-display text-xl font-semibold text-ink sm:text-2xl">Autoškola Jméno</span>
         </a>
         <nav className="hidden items-center gap-7 lg:flex" aria-label="Hlavní navigace">
           {links.map(([label, href]) => <a key={href} href={href} className="text-sm font-medium text-ink/65 transition-colors hover:text-coral">{label}</a>)}

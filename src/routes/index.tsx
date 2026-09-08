@@ -72,6 +72,7 @@ const prices = [
   { name: "Automobil Standard", price: "21 490 Kč", subtitle: "Skupina B · přibližně 3 měsíce", features: ["Výuka teorie", "28 hodin jízd", "Příprava ke zkoušce"] },
   { name: "Automobil Expres", price: "24 900 Kč", subtitle: "Skupina B · přibližně 1 měsíc", features: ["Intenzivní harmonogram", "Prioritní termíny", "Online studijní materiály"], featured: true },
   { name: "Automobil + přívěs", price: "8 900 Kč", subtitle: "Rozšíření B + E", features: ["Teoretická příprava", "Praktický výcvik", "Příprava ke zkoušce"] },
+  { name: "Motorka A1", price: "18 500 Kč", subtitle: "Skupina A1 · lehký motocykl", features: ["Teorie a technika jízdy", "Výcvik na cvičišti i v provozu", "Příprava ke zkoušce"] },
 ];
 
 const reviews = [
@@ -105,7 +106,7 @@ function DrivingSchoolPage() {
         <div className="relative mx-auto grid min-h-[calc(100svh-7rem)] max-w-7xl items-center gap-12 px-5 pb-20 sm:px-8 lg:grid-cols-12 lg:gap-14 lg:pb-24">
           <Reveal className="lg:col-span-7" direction="left">
             <div className="inline-flex items-center gap-2 rounded-full bg-mint/75 px-3 py-1.5 text-xs font-bold text-ink/70">
-              <span className="size-1.5 rounded-full bg-coral" /> Humpolec · individuální výuka
+              <span className="size-1.5 rounded-full bg-coral" /> Místo · individuální výuka
             </div>
             <h1 className="mt-6 max-w-4xl font-display text-5xl font-semibold leading-[1.02] sm:text-6xl lg:text-7xl">Řidičák, který se vyplatí už při prvním zatočení.</h1>
             <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/65 md:text-xl">Moderní auta, trpělivý instruktor a kurz přizpůsobený tvému tempu. Získáš jistotu, ne jen razítko.</p>
@@ -121,15 +122,9 @@ function DrivingSchoolPage() {
           </Reveal>
 
           <Reveal className="lg:col-span-5" direction="right" delay={120}>
-            <figure className="glass-surface overflow-hidden rounded-[2rem] p-3">
-              <div className="overflow-hidden rounded-[1.4rem]">
-                <img src={heroImage} alt="Pohled řidiče z moderního auta za soumraku" width={1408} height={1056} fetchPriority="high" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
-              </div>
-              <figcaption className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-3 py-3">
-                <span className="min-w-0 truncate text-sm font-semibold">Výuka bez zbytečného stresu</span>
-                <span className="shrink-0 text-xs text-ink/50">manuál + automat</span>
-              </figcaption>
-            </figure>
+            <div className="overflow-hidden rounded-[2rem] lg:-mr-6 lg:scale-[1.06]">
+              <img src={heroImage} alt="Pohled řidiče z moderního auta za soumraku" width={1408} height={1056} fetchPriority="high" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
+            </div>
           </Reveal>
         </div>
       </section>
@@ -186,9 +181,9 @@ function DrivingSchoolPage() {
         <div className="absolute -bottom-32 -left-20 size-96 rounded-full bg-coral/10 blur-3xl" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading light eyebrow="Ceník autoškoly" title="Transparentní ceny. Žádné hvězdičky." description="Cena zahrnuje teorii, praktickou výuku i průběžnou podporu. Kurz lze po dohodě hradit ve splátkách." />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="-mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 [scrollbar-width:thin]">
             {prices.map((item, index) => (
-              <Reveal key={item.name} delay={index * 100} className={`rounded-[1.5rem] p-7 ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
+              <Reveal key={item.name} delay={index * 100} className={`w-[80%] shrink-0 snap-start rounded-[1.5rem] p-7 sm:w-[52%] lg:w-[28.5%] ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
                 {item.featured ? <span className="rounded-full bg-ink/10 px-3 py-1 text-xs font-bold">Nejoblíbenější</span> : null}
                 <h3 className={`${item.featured ? "mt-5" : ""} font-display text-xl font-semibold`}>{item.name}</h3>
                 <p className="mt-4 font-display text-4xl font-semibold">{item.price}</p>
@@ -198,6 +193,7 @@ function DrivingSchoolPage() {
               </Reveal>
             ))}
           </div>
+          <p className="mt-3 text-xs text-off/45">Přetažením do strany zobrazíš všechny balíčky.</p>
           <Reveal className="mt-8 grid gap-6 border-t border-off/10 pt-8 lg:grid-cols-[1fr_1.6fr]">
             <div><h3 className="font-display text-lg font-semibold text-signal">Další poplatky</h3><p className="mt-2 text-sm text-off/50">Přehledně předem, bez překvapení.</p></div>
             <dl className="grid gap-3 text-sm sm:grid-cols-2">{[["Kondiční jízda · 45 min", "800 Kč"], ["Storno výuky", "2 000 Kč"], ["Vrácení řidičského průkazu", "3 900 Kč"], ["Doplňovací výuka A2 → A", "4 900 Kč"]].map(([name, price]) => <div key={name} className="flex justify-between gap-4 border-b border-off/10 pb-3"><dt className="text-off/65">{name}</dt><dd className="shrink-0 font-bold text-coral">{price}</dd></div>)}</dl>
