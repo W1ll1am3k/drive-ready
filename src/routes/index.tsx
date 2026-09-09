@@ -161,18 +161,52 @@ function DrivingSchoolPage() {
       <section id="kurzy" className="scroll-mt-24 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading eyebrow="Kurzy a vozidla" title="Vyber si, jak se chceš učit." description="Každý kurz stojí na individuálním přístupu, moderním vozovém parku a termínech, které lze skloubit s tvým životem." />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {courses.map((course, index) => (
-              <Reveal key={course.title} delay={index * 100} className={`group rounded-[1.5rem] p-5 ring-1 ring-card/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-xl ${course.tone}`}>
-                <div className="overflow-hidden rounded-[1rem]"><img src={course.image} alt={course.alt} width={1024} height={640} loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /></div>
-                <p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-coral">{course.label}</p>
-                <h3 className="mt-2 font-display text-2xl font-semibold">{course.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-ink/60">{course.text}</p>
-                <ul className="mt-5 space-y-2.5 text-sm text-ink/70">{course.facts.map((fact) => <li key={fact} className="flex gap-2"><ArrowRight className="mt-0.5 size-4 shrink-0 text-coral" />{fact}</li>)}</ul>
-                <a href="#kontakt" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-ink transition-colors hover:text-coral">Vybrat kurz <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a>
-              </Reveal>
-            ))}
-          </div>
+          {(() => {
+            const trackRef = useRef<HTMLDivElement>(null);
+            const dragState = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
+            const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+              const el = trackRef.current;
+              if (!el) return;
+              dragState.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft, moved: false };
+              el.setPointerCapture(e.pointerId);
+            };
+            const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+              if (!dragState.current.active || !trackRef.current) return;
+              const dx = e.clientX - dragState.current.startX;
+              if (Math.abs(dx) > 4) dragState.current.moved = true;
+              trackRef.current.scrollLeft = dragState.current.startScroll - dx;
+            };
+            const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+              dragState.current.active = false;
+              trackRef.current?.releasePointerCapture(e.pointerId);
+              window.setTimeout(() => { dragState.current.moved = false; }, 50);
+            };
+            const preventDragClick = (e: React.MouseEvent) => {
+              if (dragState.current.moved) e.preventDefault();
+            };
+            return (
+              <div
+                ref={trackRef}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                onPointerCancel={onPointerUp}
+                className="-mx-5 mt-12 flex cursor-grab gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {courses.map((course, index) => (
+                  <Reveal key={course.title} delay={index * 100} className={`group w-[80%] shrink-0 rounded-[1.5rem] p-5 ring-1 ring-card/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-[48%] lg:w-[31%] ${course.tone}`}>
+                    <div className="overflow-hidden rounded-[1rem]"><img src={course.image} alt={course.alt} width={1024} height={640} loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /></div>
+                    <p className="mt-5 text-xs font-bold uppercase tracking-[0.16em] text-coral">{course.label}</p>
+                    <h3 className="mt-2 font-display text-2xl font-semibold">{course.title}</h3>
+                    <p className="mt-3 text-sm leading-relaxed text-ink/60">{course.text}</p>
+                    <ul className="mt-5 space-y-2.5 text-sm text-ink/70">{course.facts.map((fact) => <li key={fact} className="flex gap-2"><ArrowRight className="mt-0.5 size-4 shrink-0 text-coral" />{fact}</li>)}</ul>
+                    <span onClickCapture={preventDragClick}><a href="#kontakt" className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-ink transition-colors hover:text-coral">Vybrat kurz <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" /></a></span>
+                  </Reveal>
+                ))}
+              </div>
+            );
+          })()}
+          <p className="mt-3 text-xs text-ink/45">Chyť a potáhni do strany, aby se ukázaly všechny kurzy.</p>
         </div>
       </section>
 
