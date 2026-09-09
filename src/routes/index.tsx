@@ -181,18 +181,53 @@ function DrivingSchoolPage() {
         <div className="absolute -bottom-32 -left-20 size-96 rounded-full bg-coral/10 blur-3xl" aria-hidden="true" />
         <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading light eyebrow="Ceník autoškoly" title="Transparentní ceny. Žádné hvězdičky." description="Cena zahrnuje teorii, praktickou výuku i průběžnou podporu. Kurz lze po dohodě hradit ve splátkách." />
-          <div className="-mx-5 mt-12 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:-mx-8 sm:px-8 [scrollbar-width:thin]">
-            {prices.map((item, index) => (
-              <Reveal key={item.name} delay={index * 100} className={`w-[80%] shrink-0 snap-start rounded-[1.5rem] p-7 sm:w-[52%] lg:w-[28.5%] ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
-                {item.featured ? <span className="rounded-full bg-ink/10 px-3 py-1 text-xs font-bold">Nejoblíbenější</span> : null}
-                <h3 className={`${item.featured ? "mt-5" : ""} font-display text-xl font-semibold`}>{item.name}</h3>
-                <p className="mt-4 font-display text-4xl font-semibold">{item.price}</p>
-                <p className={`mt-2 text-sm ${item.featured ? "text-ink/60" : "text-off/50"}`}>{item.subtitle}</p>
-                <ul className={`mt-6 space-y-3 text-sm ${item.featured ? "text-ink/80" : "text-off/75"}`}>{item.features.map((feature) => <li key={feature} className="flex items-center gap-2"><Check className="size-4 shrink-0" />{feature}</li>)}</ul>
-                <Button asChild variant={item.featured ? "dark" : "outline"} size="lg" className={`mt-7 w-full ${item.featured ? "" : "border-off/15 bg-off/5 text-off hover:bg-off/10 hover:text-off"}`}><a href="#kontakt">Mám zájem</a></Button>
-              </Reveal>
-            ))}
-          </div>
+          {(() => {
+            const trackRef = useRef<HTMLDivElement>(null);
+            const dragState = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
+            const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+              const el = trackRef.current;
+              if (!el) return;
+              dragState.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft, moved: false };
+              el.setPointerCapture(e.pointerId);
+            };
+            const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+              if (!dragState.current.active || !trackRef.current) return;
+              const dx = e.clientX - dragState.current.startX;
+              if (Math.abs(dx) > 4) dragState.current.moved = true;
+              trackRef.current.scrollLeft = dragState.current.startScroll - dx;
+            };
+            const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+              dragState.current.active = false;
+              trackRef.current?.releasePointerCapture(e.pointerId);
+              window.setTimeout(() => { dragState.current.moved = false; }, 50);
+            };
+            const preventDragClick = (e: React.MouseEvent) => {
+              if (dragState.current.moved) e.preventDefault();
+            };
+            return (
+              <div
+                ref={trackRef}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                onPointerCancel={onPointerUp}
+                className="-mx-5 mt-12 flex cursor-grab gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {prices.map((item, index) => (
+                  <Reveal key={item.name} delay={index * 100} className={`w-[80%] shrink-0 rounded-[1.5rem] p-7 sm:w-[52%] lg:w-[28.5%] ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
+                    {item.featured ? <span className="rounded-full bg-ink/10 px-3 py-1 text-xs font-bold">Nejoblíbenější</span> : null}
+                    <h3 className={`${item.featured ? "mt-5" : ""} font-display text-xl font-semibold`}>{item.name}</h3>
+                    <p className="mt-4 font-display text-4xl font-semibold">{item.price}</p>
+                    <p className={`mt-2 text-sm ${item.featured ? "text-ink/60" : "text-off/50"}`}>{item.subtitle}</p>
+                    <ul className={`mt-6 space-y-3 text-sm ${item.featured ? "text-ink/80" : "text-off/75"}`}>{item.features.map((feature) => <li key={feature} className="flex items-center gap-2"><Check className="size-4 shrink-0" />{feature}</li>)}</ul>
+                    <span onClickCapture={preventDragClick}>
+                      <Button asChild variant={item.featured ? "dark" : "outline"} size="lg" className={`mt-7 w-full ${item.featured ? "" : "border-off/15 bg-off/5 text-off hover:bg-off/10 hover:text-off"}`}><a href="#kontakt">Mám zájem</a></Button>
+                    </span>
+                  </Reveal>
+                ))}
+              </div>
+            );
+          })()}
           <p className="mt-3 text-xs text-off/45">Přetažením do strany zobrazíš všechny balíčky.</p>
           <Reveal className="mt-8 grid gap-6 border-t border-off/10 pt-8 lg:grid-cols-[1fr_1.6fr]">
             <div><h3 className="font-display text-lg font-semibold text-signal">Další poplatky</h3><p className="mt-2 text-sm text-off/50">Přehledně předem, bez překvapení.</p></div>
