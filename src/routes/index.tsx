@@ -23,6 +23,7 @@ import heroImage from "@/assets/driving-hero.jpg";
 import manualImage from "@/assets/course-manual.jpg";
 import automaticImage from "@/assets/course-automatic.jpg";
 import instructorImage from "@/assets/course-intensive.jpg";
+import motorcycleImage from "@/assets/course-motorcycle.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -41,30 +42,48 @@ export const Route = createFileRoute("/")({
 const courses = [
   {
     image: manualImage,
-    alt: "Bílé výukové auto na cvičišti",
-    label: "Nejoblíbenější",
-    title: "Kurz B manuál",
+    alt: "Výukové auto na cvičišti autoškoly",
+    label: "Skupina B",
+    title: "Automobil Standard",
     text: "Klasický kurz pro osobní vůz. Od prvního rozjezdu až po bezpečnou samostatnou jízdu.",
     facts: ["28 hodin praktických jízd", "Teorie prezenčně i online", "Podpora až do zkoušky"],
     tone: "bg-card/65",
   },
   {
-    image: automaticImage,
-    alt: "Moderní interiér auta s automatickou převodovkou",
-    label: "Pohodlná volba",
-    title: "Kurz B automat",
-    text: "Soustřeď se na provoz, ne na spojku. Plynulá cesta k jistotě za volantem.",
-    facts: ["Moderní automatický vůz", "Méně stresu při rozjezdech", "Flexibilní termíny jízd"],
-    tone: "bg-mint/55",
-  },
-  {
     image: instructorImage,
     alt: "Instruktor autoškoly stojící u výukového vozu",
-    label: "Rychlá cesta",
-    title: "Intenzivní kurz",
+    label: "Skupina B",
+    title: "Automobil Expres",
     text: "Souvislý harmonogram pro ty, kteří chtějí řidičák zvládnout rychle a důkladně.",
     facts: ["Kurz přibližně do 4 týdnů", "Prioritní plánování jízd", "Individuální příprava"],
     tone: "bg-cream/70",
+  },
+  {
+    image: motorcycleImage,
+    alt: "Lehký motocykl na cvičišti autoškoly",
+    label: "Skupina A1",
+    title: "Motorka A1",
+    text: "Výcvik na lehkém motocyklu. Od základů ovládání po bezpečnou jízdu v provozu.",
+    facts: ["Teorie a technika jízdy", "Výcvik na cvičišti i v provozu", "Příprava ke zkoušce"],
+    tone: "bg-mint/55",
+  },
+  {
+    image: motorcycleImage,
+    alt: "Střední motocykl na cvičišti autoškoly",
+    label: "Skupina A2",
+    title: "Motorka A2",
+    text: "Rozšíření pro střední výkon. Naučíš se ovládat silnější stroj s jistotou.",
+    facts: ["Nadstavbový výcvik A2", "Jízda v reálném provozu", "Příprava ke zkoušce"],
+    tone: "bg-peach/50",
+  },
+  {
+    image: automaticImage,
+    alt: "Osobní vůz s přívěsem na cvičišti",
+    label: "Rozšíření B + E",
+    title: "Automobil + přívěs",
+    text: "Rozšíření o jízdu s přívěsem. Zvládneš manévry i bezpečné couvání s soupravou.",
+    facts: ["Teoretická příprava", "Praktický výcvik", "Příprava ke zkoušce"],
+    tone: "bg-card/65",
   },
 ];
 
@@ -72,13 +91,14 @@ const prices = [
   { name: "Automobil Standard", price: "21 490 Kč", subtitle: "Skupina B · přibližně 3 měsíce", features: ["Výuka teorie", "28 hodin jízd", "Příprava ke zkoušce"] },
   { name: "Automobil Expres", price: "24 900 Kč", subtitle: "Skupina B · přibližně 1 měsíc", features: ["Intenzivní harmonogram", "Prioritní termíny", "Online studijní materiály"], featured: true },
   { name: "Motorka A1", price: "18 500 Kč", subtitle: "Skupina A1 · lehký motocykl", features: ["Teorie a technika jízdy", "Výcvik na cvičišti i v provozu", "Příprava ke zkoušce"] },
+  { name: "Motorka A2", price: "21 900 Kč", subtitle: "Skupina A2 · střední motocykl", features: ["Nadstavbový výcvik A2", "Jízda v reálném provozu", "Příprava ke zkoušce"] },
   { name: "Automobil + přívěs", price: "8 900 Kč", subtitle: "Rozšíření B + E", features: ["Teoretická příprava", "Praktický výcvik", "Příprava ke zkoušce"] },
 ];
 
 const reviews = [
-  { name: "Ondřej Boháč", course: "Skupina A", text: "Výborná autoškola. Individuální přístup, trpělivost a skvělá příprava na závěrečnou zkoušku.", initials: "OB", tone: "bg-peach" },
-  { name: "Lucie Černá", course: "Skupina B", text: "Na jízdy jsem chodila ráda. Žádný zbytečný stres, všechno mi bylo klidně a srozumitelně vysvětleno.", initials: "LČ", tone: "bg-lemon" },
-  { name: "Dominik Tesař", course: "Skupina A2", text: "Kurz proběhl bez komplikací a v přátelské atmosféře. Autoškolu mohu s klidem doporučit.", initials: "DT", tone: "bg-mint" },
+  { name: "Ondřej Boháč", text: "Výborná autoškola. Individuální přístup, trpělivost a skvělá příprava na závěrečnou zkoušku.", initials: "OB", tone: "bg-peach" },
+  { name: "Lucie Černá", text: "Na jízdy jsem chodila ráda. Žádný zbytečný stres, všechno mi bylo klidně a srozumitelně vysvětleno.", initials: "LČ", tone: "bg-lemon" },
+  { name: "Dominik Tesař", text: "Kurz proběhl bez komplikací a v přátelské atmosféře. Autoškolu mohu s klidem doporučit.", initials: "DT", tone: "bg-mint" },
 ];
 
 function SectionHeading({ eyebrow, title, description, light = false }: { eyebrow: string; title: string; description?: string; light?: boolean }) {
@@ -141,7 +161,7 @@ function DrivingSchoolPage() {
       <section id="kurzy" className="scroll-mt-24 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading eyebrow="Kurzy a vozidla" title="Vyber si, jak se chceš učit." description="Každý kurz stojí na individuálním přístupu, moderním vozovém parku a termínech, které lze skloubit s tvým životem." />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {courses.map((course, index) => (
               <Reveal key={course.title} delay={index * 100} className={`group rounded-[1.5rem] p-5 ring-1 ring-card/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-xl ${course.tone}`}>
                 <div className="overflow-hidden rounded-[1rem]"><img src={course.image} alt={course.alt} width={1024} height={640} loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /></div>
@@ -243,7 +263,7 @@ function DrivingSchoolPage() {
             {reviews.map((review, index) => <Reveal key={review.name} delay={index * 100} className="rounded-[1.5rem] bg-card/65 p-6 ring-1 ring-card backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1">
               <div className="flex gap-1 text-signal" aria-label="5 z 5 hvězdiček">{Array.from({ length: 5 }).map((_, star) => <Star key={star} className="size-4 fill-current" />)}</div>
               <blockquote className="mt-5 text-base leading-relaxed text-ink/75">„{review.text}“</blockquote>
-              <div className="mt-6 flex items-center gap-3"><span className={`grid size-11 place-items-center rounded-full font-display text-sm font-bold ${review.tone}`}>{review.initials}</span><div><p className="font-semibold">{review.name}</p><p className="text-xs text-ink/50">Absolvent · {review.course}</p></div></div>
+              <div className="mt-6 flex items-center gap-3"><span className={`grid size-11 place-items-center rounded-full font-display text-sm font-bold ${review.tone}`}>{review.initials}</span><div><p className="font-semibold">{review.name}</p><p className="text-xs text-ink/50">Absolvent</p></div></div>
             </Reveal>)}
           </div>
         </div>
@@ -277,7 +297,7 @@ function DrivingSchoolPage() {
             <p className="text-xs font-bold uppercase tracking-[0.18em] text-signal">Kontakt</p>
             <h2 className="mt-3 max-w-xl font-display text-4xl font-semibold leading-[1.08] md:text-5xl">Pojďme tě dostat za volant.</h2>
             <p className="mt-5 max-w-md leading-relaxed text-off/60">Napiš nám, o jaký kurz máš zájem. Ozveme se a společně vybereme termín, který ti sedne.</p>
-            <div className="mt-8 space-y-4 text-sm"><a href="tel:+420722946082" className="flex items-center gap-3 text-off/80 hover:text-signal"><Phone className="size-5 text-coral" />+420 722 946 082</a><a href="mailto:info@autoskola-jj.cz" className="flex items-center gap-3 text-off/80 hover:text-signal"><Mail className="size-5 text-coral" />info@autoskola-jj.cz</a><p className="flex items-start gap-3 text-off/80"><MapPin className="mt-0.5 size-5 shrink-0 text-coral" />Arnošta z Pardubic 2082, Pardubice</p></div>
+            <div className="mt-8 space-y-4 text-sm"><a href="tel:+420777777777" className="flex items-center gap-3 text-off/80 hover:text-signal"><Phone className="size-5 text-coral" />+420 777 777 777</a><a href="mailto:info@autoskola-jm.cz" className="flex items-center gap-3 text-off/80 hover:text-signal"><Mail className="size-5 text-coral" />info@autoskola-jm.cz</a><p className="flex items-start gap-3 text-off/80"><MapPin className="mt-0.5 size-5 shrink-0 text-coral" />Ulice 123, 123 45 Město</p></div>
             <div className="mt-8 grid grid-cols-2 gap-3"><div className="rounded-[1rem] border border-off/10 bg-off/5 p-4"><Clock3 className="size-5 text-signal" /><p className="mt-3 font-semibold">Po–Pá</p><p className="text-sm text-off/55">dle domluvy</p></div><div className="rounded-[1rem] border border-off/10 bg-off/5 p-4"><Sparkles className="size-5 text-signal" /><p className="mt-3 font-semibold">Odpovíme rychle</p><p className="text-sm text-off/55">obvykle tentýž den</p></div></div>
           </Reveal>
           <Reveal className="lg:col-span-7" direction="right" delay={100}>
