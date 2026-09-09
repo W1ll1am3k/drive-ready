@@ -41,30 +41,48 @@ export const Route = createFileRoute("/")({
 const courses = [
   {
     image: manualImage,
-    alt: "Bílé výukové auto na cvičišti",
-    label: "Nejoblíbenější",
-    title: "Kurz B manuál",
+    alt: "Výukové auto na cvičišti autoškoly",
+    label: "Skupina B",
+    title: "Automobil Standard",
     text: "Klasický kurz pro osobní vůz. Od prvního rozjezdu až po bezpečnou samostatnou jízdu.",
     facts: ["28 hodin praktických jízd", "Teorie prezenčně i online", "Podpora až do zkoušky"],
     tone: "bg-card/65",
   },
   {
-    image: automaticImage,
-    alt: "Moderní interiér auta s automatickou převodovkou",
-    label: "Pohodlná volba",
-    title: "Kurz B automat",
-    text: "Soustřeď se na provoz, ne na spojku. Plynulá cesta k jistotě za volantem.",
-    facts: ["Moderní automatický vůz", "Méně stresu při rozjezdech", "Flexibilní termíny jízd"],
-    tone: "bg-mint/55",
-  },
-  {
     image: instructorImage,
     alt: "Instruktor autoškoly stojící u výukového vozu",
-    label: "Rychlá cesta",
-    title: "Intenzivní kurz",
+    label: "Skupina B",
+    title: "Automobil Expres",
     text: "Souvislý harmonogram pro ty, kteří chtějí řidičák zvládnout rychle a důkladně.",
     facts: ["Kurz přibližně do 4 týdnů", "Prioritní plánování jízd", "Individuální příprava"],
     tone: "bg-cream/70",
+  },
+  {
+    image: motorcycleImage,
+    alt: "Lehký motocykl na cvičišti autoškoly",
+    label: "Skupina A1",
+    title: "Motorka A1",
+    text: "Výcvik na lehkém motocyklu. Od základů ovládání po bezpečnou jízdu v provozu.",
+    facts: ["Teorie a technika jízdy", "Výcvik na cvičišti i v provozu", "Příprava ke zkoušce"],
+    tone: "bg-mint/55",
+  },
+  {
+    image: motorcycleImage,
+    alt: "Střední motocykl na cvičišti autoškoly",
+    label: "Skupina A2",
+    title: "Motorka A2",
+    text: "Rozšíření pro střední výkon. Naučíš se ovládat silnější stroj s jistotou.",
+    facts: ["Nadstavbový výcvik A2", "Jízda v reálném provozu", "Příprava ke zkoušce"],
+    tone: "bg-peach/50",
+  },
+  {
+    image: automaticImage,
+    alt: "Osobní vůz s přívěsem na cvičišti",
+    label: "Rozšíření B + E",
+    title: "Automobil + přívěs",
+    text: "Rozšíření o jízdu s přívěsem. Zvládneš manévry i bezpečné couvání s soupravou.",
+    facts: ["Teoretická příprava", "Praktický výcvik", "Příprava ke zkoušce"],
+    tone: "bg-card/65",
   },
 ];
 
@@ -72,13 +90,14 @@ const prices = [
   { name: "Automobil Standard", price: "21 490 Kč", subtitle: "Skupina B · přibližně 3 měsíce", features: ["Výuka teorie", "28 hodin jízd", "Příprava ke zkoušce"] },
   { name: "Automobil Expres", price: "24 900 Kč", subtitle: "Skupina B · přibližně 1 měsíc", features: ["Intenzivní harmonogram", "Prioritní termíny", "Online studijní materiály"], featured: true },
   { name: "Motorka A1", price: "18 500 Kč", subtitle: "Skupina A1 · lehký motocykl", features: ["Teorie a technika jízdy", "Výcvik na cvičišti i v provozu", "Příprava ke zkoušce"] },
+  { name: "Motorka A2", price: "21 900 Kč", subtitle: "Skupina A2 · střední motocykl", features: ["Nadstavbový výcvik A2", "Jízda v reálném provozu", "Příprava ke zkoušce"] },
   { name: "Automobil + přívěs", price: "8 900 Kč", subtitle: "Rozšíření B + E", features: ["Teoretická příprava", "Praktický výcvik", "Příprava ke zkoušce"] },
 ];
 
 const reviews = [
-  { name: "Ondřej Boháč", course: "Skupina A", text: "Výborná autoškola. Individuální přístup, trpělivost a skvělá příprava na závěrečnou zkoušku.", initials: "OB", tone: "bg-peach" },
-  { name: "Lucie Černá", course: "Skupina B", text: "Na jízdy jsem chodila ráda. Žádný zbytečný stres, všechno mi bylo klidně a srozumitelně vysvětleno.", initials: "LČ", tone: "bg-lemon" },
-  { name: "Dominik Tesař", course: "Skupina A2", text: "Kurz proběhl bez komplikací a v přátelské atmosféře. Autoškolu mohu s klidem doporučit.", initials: "DT", tone: "bg-mint" },
+  { name: "Ondřej Boháč", text: "Výborná autoškola. Individuální přístup, trpělivost a skvělá příprava na závěrečnou zkoušku.", initials: "OB", tone: "bg-peach" },
+  { name: "Lucie Černá", text: "Na jízdy jsem chodila ráda. Žádný zbytečný stres, všechno mi bylo klidně a srozumitelně vysvětleno.", initials: "LČ", tone: "bg-lemon" },
+  { name: "Dominik Tesař", text: "Kurz proběhl bez komplikací a v přátelské atmosféře. Autoškolu mohu s klidem doporučit.", initials: "DT", tone: "bg-mint" },
 ];
 
 function SectionHeading({ eyebrow, title, description, light = false }: { eyebrow: string; title: string; description?: string; light?: boolean }) {
