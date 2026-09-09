@@ -23,6 +23,7 @@ import heroImage from "@/assets/driving-hero.jpg";
 import manualImage from "@/assets/course-manual.jpg";
 import automaticImage from "@/assets/course-automatic.jpg";
 import instructorImage from "@/assets/course-intensive.jpg";
+import motorcycleImage from "@/assets/course-motorcycle.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -262,7 +263,7 @@ function DrivingSchoolPage() {
             {reviews.map((review, index) => <Reveal key={review.name} delay={index * 100} className="rounded-[1.5rem] bg-card/65 p-6 ring-1 ring-card backdrop-blur-xl transition-transform duration-300 hover:-translate-y-1">
               <div className="flex gap-1 text-signal" aria-label="5 z 5 hvězdiček">{Array.from({ length: 5 }).map((_, star) => <Star key={star} className="size-4 fill-current" />)}</div>
               <blockquote className="mt-5 text-base leading-relaxed text-ink/75">„{review.text}“</blockquote>
-              <div className="mt-6 flex items-center gap-3"><span className={`grid size-11 place-items-center rounded-full font-display text-sm font-bold ${review.tone}`}>{review.initials}</span><div><p className="font-semibold">{review.name}</p><p className="text-xs text-ink/50">Absolvent · {review.course}</p></div></div>
+              <div className="mt-6 flex items-center gap-3"><span className={`grid size-11 place-items-center rounded-full font-display text-sm font-bold ${review.tone}`}>{review.initials}</span><div><p className="font-semibold">{review.name}</p><p className="text-xs text-ink/50">Absolvent</p></div></div>
             </Reveal>)}
           </div>
         </div>
