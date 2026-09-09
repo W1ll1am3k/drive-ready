@@ -249,7 +249,17 @@ function DrivingSchoolPage() {
             <form onSubmit={(event) => { event.preventDefault(); setSent(true); }} className="rounded-[1.5rem] bg-off p-6 text-ink shadow-2xl md:p-8">
               <div className="grid gap-5 sm:grid-cols-2"><label className="text-sm font-medium">Jméno<input required name="name" className="mt-2 h-12 w-full rounded-xl border border-input bg-card/60 px-4 outline-none transition focus:border-coral focus:ring-2 focus:ring-coral/20" /></label><label className="text-sm font-medium">Telefon<input required name="phone" type="tel" className="mt-2 h-12 w-full rounded-xl border border-input bg-card/60 px-4 outline-none transition focus:border-coral focus:ring-2 focus:ring-coral/20" /></label></div>
               <label className="mt-5 block text-sm font-medium">E-mail<input required name="email" type="email" className="mt-2 h-12 w-full rounded-xl border border-input bg-card/60 px-4 outline-none transition focus:border-coral focus:ring-2 focus:ring-coral/20" /></label>
-              <label className="mt-5 block text-sm font-medium">O jaký kurz máš zájem?<textarea required name="message" rows={4} className="mt-2 w-full resize-none rounded-xl border border-input bg-card/60 px-4 py-3 outline-none transition focus:border-coral focus:ring-2 focus:ring-coral/20" /></label>
+              <fieldset className="mt-5">
+                <legend className="text-sm font-medium">O jaký kurz máš zájem?</legend>
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {prices.map((item) => (
+                    <label key={item.name} className="flex cursor-pointer items-center gap-3 rounded-xl border border-input bg-card/60 px-4 py-3 text-sm transition hover:border-coral">
+                      <input type="checkbox" name="courses" value={item.name} className="size-4 shrink-0 accent-coral" />
+                      <span className="min-w-0">{item.name}</span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
               <Button type="submit" variant="hero" size="lg" className="mt-6 w-full sm:w-auto">Odeslat poptávku <ArrowRight /></Button>
               {sent ? <p role="status" className="mt-4 rounded-xl bg-mint px-4 py-3 text-sm font-medium text-ink">Děkujeme. Poptávka je připravená — brzy se ozveme.</p> : <p className="mt-4 text-xs text-ink/45">Odesláním souhlasíš se zpracováním údajů pro vyřízení poptávky.</p>}
             </form>
