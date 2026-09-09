@@ -161,7 +161,7 @@ function DrivingSchoolPage() {
       <section id="kurzy" className="scroll-mt-24 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading eyebrow="Kurzy a vozidla" title="Vyber si, jak se chceš učit." description="Každý kurz stojí na individuálním přístupu, moderním vozovém parku a termínech, které lze skloubit s tvým životem." />
-          <div className="mt-12 grid gap-5 md:grid-cols-3">
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
             {courses.map((course, index) => (
               <Reveal key={course.title} delay={index * 100} className={`group rounded-[1.5rem] p-5 ring-1 ring-card/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-xl ${course.tone}`}>
                 <div className="overflow-hidden rounded-[1rem]"><img src={course.image} alt={course.alt} width={1024} height={640} loading="lazy" className="aspect-[16/10] w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]" /></div>
