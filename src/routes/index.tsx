@@ -228,7 +228,7 @@ function DrivingSchoolPage() {
               </div>
             );
           })()}
-          <p className="mt-3 text-xs text-off/45">Přetažením do strany zobrazíš všechny balíčky.</p>
+          <p className="mt-3 text-xs text-off/45">Chyť a potáhni do strany, aby se ukázaly všechny balíčky.</p>
           <Reveal className="mt-8 grid gap-6 border-t border-off/10 pt-8 lg:grid-cols-[1fr_1.6fr]">
             <div><h3 className="font-display text-lg font-semibold text-signal">Další poplatky</h3><p className="mt-2 text-sm text-off/50">Přehledně předem, bez překvapení.</p></div>
             <dl className="grid gap-3 text-sm sm:grid-cols-2">{[["Kondiční jízda · 45 min", "800 Kč"], ["Storno výuky", "2 000 Kč"], ["Vrácení řidičského průkazu", "3 900 Kč"], ["Doplňovací výuka A2 → A", "4 900 Kč"]].map(([name, price]) => <div key={name} className="flex justify-between gap-4 border-b border-off/10 pb-3"><dt className="text-off/65">{name}</dt><dd className="shrink-0 font-bold text-coral">{price}</dd></div>)}</dl>
