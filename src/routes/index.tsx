@@ -142,7 +142,7 @@ function DrivingSchoolPage() {
           </Reveal>
 
           <Reveal className="lg:col-span-5" direction="right" delay={120}>
-            <div className="overflow-hidden rounded-[2rem] lg:-mr-6 lg:scale-[1.06] lg:-mt-6">
+            <div className="overflow-hidden rounded-[2rem] lg:-mr-6 lg:scale-[1.06] lg:-mt-16">
               <img src={heroImage} alt="Pohled řidiče z moderního auta za soumraku" width={1408} height={1056} fetchPriority="high" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
             </div>
           </Reveal>
