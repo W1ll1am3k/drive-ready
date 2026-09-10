@@ -142,7 +142,7 @@ function DrivingSchoolPage() {
           </Reveal>
 
           <Reveal className="lg:col-span-5" direction="right" delay={120}>
-            <div className="overflow-hidden rounded-[2rem] lg:-mr-6 lg:scale-[1.06]">
+            <div className="overflow-hidden rounded-[2rem] lg:-mr-6 lg:scale-[1.06] lg:-mt-6">
               <img src={heroImage} alt="Pohled řidiče z moderního auta za soumraku" width={1408} height={1056} fetchPriority="high" className="aspect-[4/3] w-full object-cover transition-transform duration-700 hover:scale-[1.03]" />
             </div>
           </Reveal>
@@ -358,7 +358,7 @@ function DrivingSchoolPage() {
 
       <footer className="border-t border-ink/10 bg-off">
         <div className="mx-auto grid max-w-7xl gap-5 px-5 py-8 text-sm text-ink/55 sm:px-8 md:grid-cols-[minmax(0,1fr)_auto] md:items-center">
-          <div><p className="font-display text-lg font-semibold text-ink">Autoškola Šťastný</p><p className="mt-1">Klidná cesta k samostatné jízdě.</p></div>
+          <div><p className="font-display text-lg font-semibold text-ink">Autoškola Jméno</p><p className="mt-1">Klidná cesta k samostatné jízdě.</p></div>
           <div className="flex flex-wrap gap-x-6 gap-y-2 md:justify-end"><a href="#kurzy" className="hover:text-coral">Kurzy</a><a href="#cenik" className="hover:text-coral">Ceník</a><a href="#kontakt" className="hover:text-coral">Kontakt</a><span>© 2026</span></div>
         </div>
       </footer>
