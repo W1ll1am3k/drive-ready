@@ -191,7 +191,7 @@ function DrivingSchoolPage() {
                 onPointerMove={onPointerMove}
                 onPointerUp={onPointerUp}
                 onPointerCancel={onPointerUp}
-                className="-mx-5 mt-12 flex cursor-grab gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="-mx-5 mt-12 flex cursor-grab select-none gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {courses.map((course, index) => (
                   <Reveal key={course.title} delay={index * 100} className={`group w-[80%] shrink-0 rounded-[1.5rem] p-5 ring-1 ring-card/80 backdrop-blur-xl transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-[48%] lg:w-[31%] ${course.tone}`}>
@@ -265,7 +265,7 @@ function DrivingSchoolPage() {
                 onPointerMove={onPointerMove}
                 onPointerUp={onPointerUp}
                 onPointerCancel={onPointerUp}
-                className="-mx-5 mt-12 flex cursor-grab gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="-mx-5 mt-12 flex cursor-grab select-none gap-5 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {prices.map((item, index) => (
                   <Reveal key={item.name} delay={index * 100} className={`w-[80%] shrink-0 rounded-[1.5rem] p-7 sm:w-[52%] lg:w-[28.5%] ${item.featured ? "bg-signal text-ink shadow-2xl shadow-signal/15" : "border border-off/10 bg-off/5 text-off backdrop-blur-xl"}`}>
