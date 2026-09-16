@@ -24,6 +24,9 @@ import manualImage from "@/assets/course-manual.jpg";
 import automaticImage from "@/assets/course-automatic.jpg";
 import instructorImage from "@/assets/course-intensive.jpg";
 import motorcycleImage from "@/assets/course-motorcycle.jpg";
+import fleetHatchbackImage from "@/assets/fleet-hatchback.jpg";
+import fleetSuvImage from "@/assets/fleet-suv.jpg";
+import fleetTrailerImage from "@/assets/fleet-trailer.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -99,6 +102,33 @@ const reviews = [
   { name: "Ondřej Boháč", text: "Výborná autoškola. Individuální přístup, trpělivost a skvělá příprava na závěrečnou zkoušku.", initials: "OB", tone: "bg-peach" },
   { name: "Lucie Černá", text: "Na jízdy jsem chodila ráda. Žádný zbytečný stres, všechno mi bylo klidně a srozumitelně vysvětleno.", initials: "LČ", tone: "bg-lemon" },
   { name: "Dominik Tesař", text: "Kurz proběhl bez komplikací a v přátelské atmosféře. Autoškolu mohu s klidem doporučit.", initials: "DT", tone: "bg-mint" },
+];
+
+const fleet = [
+  {
+    image: fleetHatchbackImage,
+    alt: "Bílý výukový hatchback autoškoly",
+    name: "Městský hatchback",
+    category: "Skupina B",
+    facts: [["Palivo", "benzín"], ["Převodovka", "manuální, 6 st."], ["Výkon", "85 kW"]],
+    tone: "bg-mint",
+  },
+  {
+    image: fleetSuvImage,
+    alt: "Modré výukové SUV autoškoly",
+    name: "Komfortní SUV",
+    category: "Skupina B",
+    facts: [["Palivo", "benzín"], ["Převodovka", "manuální, 6 st."], ["Výkon", "110 kW"]],
+    tone: "bg-lemon",
+  },
+  {
+    image: fleetTrailerImage,
+    alt: "Výukové auto s krytým přívěsem",
+    name: "Výcviková souprava",
+    category: "Rozšíření B + E",
+    facts: [["Souprava", "osobní vůz + přívěs"], ["Převodovka", "manuální"], ["Výcvik", "cvičiště i provoz"]],
+    tone: "bg-peach",
+  },
 ];
 
 function SectionHeading({ eyebrow, title, description, light = false }: { eyebrow: string; title: string; description?: string; light?: boolean }) {
@@ -224,6 +254,34 @@ function DrivingSchoolPage() {
                 <span className="font-display text-sm font-bold text-coral">0{index + 1}</span>
                 <h3 className="mt-5 font-display text-xl font-semibold">{step.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink/55">{step.text}</p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="vozovy-park" className="scroll-mt-24 py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <SectionHeading eyebrow="Vozový park" title="Řídit tě naučíme v těchto vozech." description="Moderní, přehledné a pravidelně servisované vozy, ve kterých se budeš od první jízdy cítit jistě." />
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
+            {fleet.map((vehicle, index) => (
+              <Reveal key={vehicle.name} delay={index * 100} className="group overflow-hidden rounded-[1.5rem] bg-card ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+                <div className="overflow-hidden">
+                  <img src={vehicle.image} alt={vehicle.alt} width={1200} height={800} loading="lazy" className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                </div>
+                <div className="relative p-6 sm:p-7">
+                  <span className={`absolute left-0 top-0 h-full w-1 ${vehicle.tone}`} aria-hidden="true" />
+                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral">{vehicle.category}</p>
+                  <h3 className="mt-2 font-display text-2xl font-semibold">{vehicle.name}</h3>
+                  <dl className="mt-6 space-y-3 border-t border-ink/10 pt-5 text-sm">
+                    {vehicle.facts.map(([label, value]) => (
+                      <div key={label} className="grid grid-cols-[minmax(0,1fr)_auto] gap-4">
+                        <dt className="text-ink/55">{label}</dt>
+                        <dd className="text-right font-bold text-ink">{value}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
               </Reveal>
             ))}
           </div>
