@@ -27,6 +27,7 @@ import motorcycleImage from "@/assets/course-motorcycle.jpg";
 import fleetHatchbackImage from "@/assets/fleet-hatchback.jpg";
 import fleetSuvImage from "@/assets/fleet-suv.jpg";
 import fleetTrailerImage from "@/assets/fleet-trailer.jpg";
+import fleetMotorcycleImage from "@/assets/fleet-motorcycle.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,6 +129,14 @@ const fleet = [
     category: "Rozšíření B + E",
     facts: [["Souprava", "osobní vůz + přívěs"], ["Převodovka", "manuální"], ["Výcvik", "cvičiště i provoz"]],
     tone: "bg-peach",
+  },
+  {
+    image: fleetMotorcycleImage,
+    alt: "Výukový motocykl autoškoly na cvičišti",
+    name: "Lehký motocykl",
+    category: "Skupina A1 / A2",
+    facts: [["Palivo", "benzín"], ["Výkon", "11 / 35 kW"], ["Výcvik", "cvičiště i provoz"]],
+    tone: "bg-mint",
   },
 ];
 
@@ -263,28 +272,62 @@ function DrivingSchoolPage() {
       <section id="vozovy-park" className="scroll-mt-24 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeading eyebrow="Vozový park" title="Řídit tě naučíme v těchto vozech." description="Moderní, přehledné a pravidelně servisované vozy, ve kterých se budeš od první jízdy cítit jistě." />
-          <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {fleet.map((vehicle, index) => (
-              <Reveal key={vehicle.name} delay={index * 100} className="group overflow-hidden rounded-[1.5rem] bg-card ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
-                <div className="overflow-hidden">
-                  <img src={vehicle.image} alt={vehicle.alt} width={1200} height={800} loading="lazy" className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
-                </div>
-                <div className="relative p-6 sm:p-7">
-                  <span className={`absolute left-0 top-0 h-full w-1 ${vehicle.tone}`} aria-hidden="true" />
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral">{vehicle.category}</p>
-                  <h3 className="mt-2 font-display text-2xl font-semibold">{vehicle.name}</h3>
-                  <dl className="mt-6 space-y-3 border-t border-ink/10 pt-5 text-sm">
-                    {vehicle.facts.map(([label, value]) => (
-                      <div key={label} className="grid grid-cols-[minmax(0,1fr)_auto] gap-4">
-                        <dt className="text-ink/55">{label}</dt>
-                        <dd className="text-right font-bold text-ink">{value}</dd>
-                      </div>
-                    ))}
-                  </dl>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          {(() => {
+            const trackRef = useRef<HTMLDivElement>(null);
+            const dragState = useRef({ active: false, startX: 0, startScroll: 0, moved: false });
+            const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+              const el = trackRef.current;
+              if (!el) return;
+              dragState.current = { active: true, startX: e.clientX, startScroll: el.scrollLeft, moved: false };
+              el.setPointerCapture(e.pointerId);
+            };
+            const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+              if (!dragState.current.active || !trackRef.current) return;
+              const dx = e.clientX - dragState.current.startX;
+              if (Math.abs(dx) > 4) dragState.current.moved = true;
+              trackRef.current.scrollLeft = dragState.current.startScroll - dx;
+            };
+            const onPointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+              dragState.current.active = false;
+              trackRef.current?.releasePointerCapture(e.pointerId);
+              window.setTimeout(() => { dragState.current.moved = false; }, 50);
+            };
+            const preventDragClick = (e: React.MouseEvent) => {
+              if (dragState.current.moved) e.preventDefault();
+            };
+            return (
+              <div
+                ref={trackRef}
+                onPointerDown={onPointerDown}
+                onPointerMove={onPointerMove}
+                onPointerUp={onPointerUp}
+                onPointerCancel={onPointerUp}
+                className="-mx-5 mt-12 flex cursor-grab select-none gap-6 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
+                {fleet.map((vehicle, index) => (
+                  <Reveal key={vehicle.name} delay={index * 100} className="group w-[80%] shrink-0 overflow-hidden rounded-[1.5rem] bg-card ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-[52%] lg:w-[31%]">
+                    <div className="overflow-hidden">
+                      <img src={vehicle.image} alt={vehicle.alt} width={1200} height={800} loading="lazy" className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
+                    </div>
+                    <div className="relative p-6 sm:p-7">
+                      <span className={`absolute left-0 top-0 h-full w-1 ${vehicle.tone}`} aria-hidden="true" />
+                      <p className="text-xs font-bold uppercase tracking-[0.16em] text-coral">{vehicle.category}</p>
+                      <h3 className="mt-2 font-display text-2xl font-semibold">{vehicle.name}</h3>
+                      <dl className="mt-6 space-y-3 border-t border-ink/10 pt-5 text-sm">
+                        {vehicle.facts.map(([label, value]) => (
+                          <div key={label} className="grid grid-cols-[minmax(0,1fr)_auto] gap-4">
+                            <dt className="text-ink/55">{label}</dt>
+                            <dd className="text-right font-bold text-ink">{value}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            );
+          })()}
+          <p className="mt-3 text-xs text-ink/45">Chyť a potáhni do strany, aby se ukázaly všechny vozy.</p>
         </div>
       </section>
 
