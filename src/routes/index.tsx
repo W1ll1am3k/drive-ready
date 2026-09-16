@@ -27,6 +27,7 @@ import motorcycleImage from "@/assets/course-motorcycle.jpg";
 import fleetHatchbackImage from "@/assets/fleet-hatchback.jpg";
 import fleetSuvImage from "@/assets/fleet-suv.jpg";
 import fleetTrailerImage from "@/assets/fleet-trailer.jpg";
+import fleetMotorcycleImage from "@/assets/fleet-motorcycle.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -128,6 +129,14 @@ const fleet = [
     category: "Rozšíření B + E",
     facts: [["Souprava", "osobní vůz + přívěs"], ["Převodovka", "manuální"], ["Výcvik", "cvičiště i provoz"]],
     tone: "bg-peach",
+  },
+  {
+    image: fleetMotorcycleImage,
+    alt: "Výukový motocykl autoškoly na cvičišti",
+    name: "Lehký motocykl",
+    category: "Skupina A1 / A2",
+    facts: [["Palivo", "benzín"], ["Výkon", "11 / 35 kW"], ["Výcvik", "cvičiště i provoz"]],
+    tone: "bg-mint",
   },
 ];
 
