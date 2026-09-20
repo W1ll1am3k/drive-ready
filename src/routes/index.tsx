@@ -153,12 +153,34 @@ function SectionHeading({ eyebrow, title, description, light = false }: { eyebro
   );
 }
 
+function ScrollToTop() {
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setVisible(window.scrollY > 480);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  if (!visible) return null;
+  return (
+    <button
+      type="button"
+      aria-label="Nahoru na začátek"
+      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      className="fixed bottom-5 right-5 z-50 grid size-12 place-items-center rounded-full bg-coral text-off shadow-xl shadow-coral/30 transition hover:scale-105 hover:bg-coral/90 active:scale-95 sm:bottom-7 sm:right-7"
+    >
+      <ArrowUp className="size-5" />
+    </button>
+  );
+}
+
 function DrivingSchoolPage() {
   const [sent, setSent] = useState(false);
 
   return (
     <main id="top" className="min-h-screen bg-off text-ink antialiased">
       <Navbar />
+      <ScrollToTop />
 
       <section className="relative overflow-hidden pt-28 md:pt-32">
         <div className="absolute -left-32 -top-32 size-[28rem] rounded-full bg-lime/35 blur-3xl" aria-hidden="true" />
@@ -174,7 +196,7 @@ function DrivingSchoolPage() {
               <Button asChild variant="hero" size="lg"><a href="#kontakt">Začít kurz <ArrowRight /></a></Button>
               <Button asChild variant="soft" size="lg"><a href="#cenik">Prohlédnout ceník</a></Button>
             </div>
-            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3 border-t border-ink/10 pt-6">
+            <div className="mt-10 grid max-w-2xl grid-cols-3 gap-3 border-t border-ink/10 pt-6 text-center sm:text-left">
               <div><strong className="block font-display text-xl sm:text-2xl">92 %</strong><span className="text-xs text-ink/55 sm:text-sm">úspěšnost napoprvé</span></div>
               <div><strong className="block font-display text-xl sm:text-2xl">1 400+</strong><span className="text-xs text-ink/55 sm:text-sm">absolventů</span></div>
               <div><strong className="block font-display text-xl sm:text-2xl">4,9 / 5</strong><span className="text-xs text-ink/55 sm:text-sm">hodnocení</span></div>
@@ -306,7 +328,7 @@ function DrivingSchoolPage() {
                 className="-mx-5 mt-12 flex cursor-grab select-none gap-6 overflow-x-auto px-5 pb-4 active:cursor-grabbing sm:-mx-8 sm:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {fleet.map((vehicle, index) => (
-                  <Reveal key={vehicle.name} delay={index * 100} className="group w-[80%] shrink-0 overflow-hidden rounded-[1.5rem] bg-card ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-[52%] lg:w-[31%]">
+                  <Reveal key={vehicle.name} delay={index * 100} className="group w-[80%] shrink-0 overflow-hidden rounded-[1.5rem] bg-card ring-1 ring-ink/10 transition duration-300 hover:-translate-y-1 hover:shadow-xl sm:w-[52%] lg:w-[28.5%]">
                     <div className="overflow-hidden">
                       <img src={vehicle.image} alt={vehicle.alt} width={1200} height={800} loading="lazy" className="aspect-[3/2] w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]" />
                     </div>
